@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oosemantcdiff-bin
+_pkgname=oosemantcdiff
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="AI agent semantic delta analyzer detecting behavioral change intent in diffs."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oosemantcdiff"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oosemantcdiff')
+conflicts=('oosemantcdiff')
+source_x86_64=("${url}/releases/download/v${pkgver}/oosemantcdiff-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oosemantcdiff-linux-x86_64" "${pkgdir}/usr/bin/oosemantcdiff"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oosemantcdiff-uninstall"
+}
